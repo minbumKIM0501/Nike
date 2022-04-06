@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/index.css" />
+    <script src="js/jquery-3.6.0.min.js"></script>
     <title>Nike</title>
   </head>
   <body>
@@ -16,20 +17,48 @@
           <div class="topnav">
             <ul>
               <li><a href="#">고객센터</a></li>
-              <li><a href="#">맴버가입</a></li>
+              <li><a href="#">멤버가입</a></li>
               <li><a href="#">로그인</a></li>
             </ul>
           </div>
         </header>
         <div class="navbar">
           <h1>
-            <a href="#"><img src="img/log.png" alt="나이키로고" /></a>
+            <a href="#"><img src="img/log.png" alt="nikelog" /></a>
           </h1>
           <nav>
             <ul>
-              <li><a href="#">Men</a></li>
-              <li><a href="#">Women</a></li>
-              <li><a href="#">Sports</a></li>
+              <li>
+                <a href="#">Men</a>
+                <div class="bt_hover">
+                  <ul class="hover">
+                    <li><a href="#">신발</a></li>
+                    <li><a href="#">농구</a></li>
+                    <li><a href="#">조던</a></li>
+                    <li><a href="#">샌들&슬리퍼</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#">Women</a>
+                <div class="bt_hover">
+                  <ul class="hover">
+                    <li><a href="#">신발</a></li>
+                    <li><a href="#">러닝화</a></li>
+                    <li><a href="#">조던</a></li>
+                    <li><a href="#">샌들&슬리퍼</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <a href="#">Sports</a>
+                <div class="bt_hover">
+                  <ul class="hover">
+                    <li><a href="#">축구</a></li>
+                    <li><a href="#">농구</a></li>
+                  </ul>
+                </div>
+              </li>
               <li><a href="#">Brand</a></li>
             </ul>
           </nav>
@@ -76,7 +105,7 @@
       <div class="box03">
         <h2>Best Jordan</h2>
         <div class="shose">
-          <ul>
+          <ul class="slides">
             <li>
               <a href="#">
                 <figure>
@@ -120,6 +149,10 @@
               </a>
             </li>
           </ul>
+          <p class="controller">
+            <span class="prev">&lang;</span>
+            <span class="next">&rang;</span>
+          </p>
         </div>
       </div>
       <div class="box04">
@@ -225,5 +258,36 @@
         </section>
       </aside>
     </div>
+    <script>
+      $(function () {
+        $("nav>ul>li>div").hide();
+        $("nav>ul>li").on("mouseenter", function (e) {
+          $("nav>ul>li>div").hide();
+          $(this).children("div").show();
+        });
+        $("nav>ul>li>div").on("mouseleave", function (e) {
+          $(this).hide();
+        });
+      });
+      $(function () {
+        //준비하기
+        $(".slides>li:last").prependTo(".slides");
+        $(".slides").css("margin-left", "0");
+
+        //이벤트 작동
+        $(".next").on("click", function (e) {
+          $(".slides").animate({ marginRight: "-=580px" }, 900, function () {
+            $(".slides>li:last").prependTo(".slides");
+            $(".slides").css("margin-right", "0");
+          });
+        });
+        $(".prev").on("click", function (e) {
+          $(".slides").animate({ marginLeft: "-=580px" }, 900, function () {
+            $(".slides>li:first").appendTo(".slides");
+            $(".slides").css("margin-left", "0");
+          });
+        });
+      });
+    </script>
   </body>
 </html>
